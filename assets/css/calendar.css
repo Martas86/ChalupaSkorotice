@@ -47,3 +47,7 @@ div.reservationCalendar .calendarReservationEnd{
 .ui-datepicker td span, .ui-datepicker td a{
 	text-align: center;
 }
+
+.ui-datepicker-calendar tbody {
+	pointer-events: none;
+}
