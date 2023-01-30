@@ -17,13 +17,27 @@ function calendarShowReservation()
 	jQuery.get('assets/data/obsazenost.html', function (data) {
 			alert(data);
 			//process text file line by line
-			//$('#div').html(data.replace('n', ''));
+			var lns = data.split("\n");
+			$.each(lns, function (i, ln) {
+				if (i > 0) {
+					var bDT = ln.split("-")[0];
+					var eDT = ln.split("-")[1];
+					var bD = bDT.split(".")[0];
+					var bM = bDT.split(".")[1];
+					var bY = bDT.split(".")[2];
+					var eD = eDT.split(".")[0];
+					var eM = eDT.split(".")[1];
+					var eY = eDT.split(".")[2];
+
+					$("#reservationCalendar1").find("td[data-month='" + (bM-1) + "'][data-year='" + (bY) + "']").find("a[data-date='" + (bD) + "']").addClass("calendarReservationBegin");
+                }
+			});
 	});
 
-	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='24']").addClass("calendarReservationBegin");
+	/*$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='24']").addClass("calendarReservationBegin");
 	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='25']").addClass("calendarReservationContinue");
 	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='26']").addClass("calendarReservationChange");
-	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='27']").addClass("calendarReservationEnd");
+	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='27']").addClass("calendarReservationEnd");*/
 }
 
 function readFile(){
