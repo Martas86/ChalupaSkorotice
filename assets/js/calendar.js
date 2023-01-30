@@ -4,7 +4,7 @@ $( document ).ready(function() {
 		,selectOtherMonths:true
 		,numberOfMonths:(browser.mobile?1:3)
 		,minDate: 0
-		,onSelect: function (date, datepicker) { }
+		, onSelect: function (date, datepicker) { calendarShowReservation(); }
 		,onUpdateDatepicker: function (datepicker) { calendarShowReservation(); }
 	}
 	,$.datepicker.regional["cs"]
