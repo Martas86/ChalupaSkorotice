@@ -15,21 +15,32 @@ $( document ).ready(function() {
 function calendarShowReservation()
 {
 	jQuery.get('assets/data/obsazenost.html', function (data) {
-			alert(data);
+			//alert(data);
 			//process text file line by line
 			var lns = data.split("\n");
 			$.each(lns, function (i, ln) {
 				if (i > 0) {
-					var bDT = ln.split("-")[0];
-					var eDT = ln.split("-")[1];
-					var bD = bDT.split(".")[0];
-					var bM = bDT.split(".")[1];
-					var bY = bDT.split(".")[2];
-					var eD = eDT.split(".")[0];
-					var eM = eDT.split(".")[1];
-					var eY = eDT.split(".")[2];
+					var bS = ln.split("-")[0];
+					var eS = ln.split("-")[1];
+					var bD = bS.split(".")[0];
+					var bM = bS.split(".")[1];
+					var bY = bS.split(".")[2];
+					var eD = eS.split(".")[0];
+					var eM = eS.split(".")[1];
+					var eY = eS.split(".")[2];
 
-					$("#reservationCalendar1").find("td[data-month='" + (bM-1) + "'][data-year='" + (bY) + "']").find("a[data-date='" + (bD) + "']").addClass("calendarReservationBegin");
+					var bDT = new Date(bY, bM - 1, bD);
+					var eDT = new Date(eY, eM - 1, eD);
+					var dCnt = (eDT.getTime() - bDT.getTime()) / 1000 / 3600 / 24;
+
+					for (let i = 0; i < dCnt; i++)
+					{
+						var dDT = new Date(bDT);
+						dDT.setDate(dDT.getDate() + i);
+						if (i == 0)
+							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationBegin");
+					}
+
                 }
 			});
 	});
