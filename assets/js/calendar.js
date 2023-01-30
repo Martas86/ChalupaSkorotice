@@ -3,13 +3,14 @@ $( document ).ready(function() {
 		showOtherMonths:true
 		,selectOtherMonths:true
 		,numberOfMonths:(browser.mobile?1:3)
-		, minDate: 0
-		, onSelect: function (date, datepicker) { }
+		,minDate: 0
+		,onSelect: function (date, datepicker) { }
+		,onUpdateDatepicker: function (datepicker) { calendarShowReservation(); }
 	}
 	,$.datepicker.regional["cs"]
 	);
 	//readFile();
-	calendarShowReservation();
+	
 });
 
 function calendarShowReservation()
