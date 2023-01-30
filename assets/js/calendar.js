@@ -31,7 +31,7 @@ function calendarShowReservation()
 
 					var bDT = new Date(bY, bM - 1, bD);
 					var eDT = new Date(eY, eM - 1, eD);
-					var dCnt = (eDT.getTime() - bDT.getTime()) / 1000 / 3600 / 24;
+					var dCnt = ((eDT.getTime() - bDT.getTime()) / 1000 / 3600 / 24) + 1;
 
 					for (let i = 0; i < dCnt; i++)
 					{
@@ -39,7 +39,7 @@ function calendarShowReservation()
 						dDT.setDate(dDT.getDate() + i);
 						if (i == 0)
 							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationBegin");
-						else if (i == dCnt - 1)
+						else if (i == (dCnt - 1))
 							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationEnd");
 						else
 							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationContinue");
