@@ -3,8 +3,8 @@ $( document ).ready(function() {
 		showOtherMonths:true
 		,selectOtherMonths:true
 		,numberOfMonths:(browser.mobile?1:3)
-		,minDate:0
-		,disabled:true
+		, minDate: 0
+		, onSelect: function (date, datepicker) { }
 	}
 	,$.datepicker.regional["cs"]
 	);
