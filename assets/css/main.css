@@ -3804,7 +3804,7 @@ input, select, textarea {
 		overflow: hidden;
 		position: relative;
 		text-align: center;
-		background-image: url('picMain.jpeg');
+		background-image: url('images/picMain.jpeg');
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
