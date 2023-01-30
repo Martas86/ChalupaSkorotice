@@ -14,6 +14,12 @@ $( document ).ready(function() {
 
 function calendarShowReservation()
 {
+	jQuery.get('assets/data/obsazenost.html', function (data) {
+			alert(data);
+			//process text file line by line
+			//$('#div').html(data.replace('n', ''));
+	});
+
 	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='24']").addClass("calendarReservationBegin");
 	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='25']").addClass("calendarReservationContinue");
 	$("#reservationCalendar1").find("td[data-month='0'][data-year='2023']").find("a[data-date='26']").addClass("calendarReservationChange");
