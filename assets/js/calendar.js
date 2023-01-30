@@ -4,7 +4,7 @@ $( document ).ready(function() {
 		,selectOtherMonths:true
 		,numberOfMonths:(browser.mobile?1:3)
 		,minDate:0
-		
+		,disabled:true
 	}
 	,$.datepicker.regional["cs"]
 	);
