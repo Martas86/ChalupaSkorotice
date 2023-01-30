@@ -39,6 +39,10 @@ function calendarShowReservation()
 						dDT.setDate(dDT.getDate() + i);
 						if (i == 0)
 							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationBegin");
+						else if (i == dCnt - 1)
+							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationEnd");
+						else
+							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationContinue");
 					}
 
                 }
