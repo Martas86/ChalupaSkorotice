@@ -38,11 +38,11 @@ function calendarShowReservation()
 						var dDT = new Date(bDT);
 						dDT.setDate(dDT.getDate() + i);
 						if (i == 0)
-							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationBegin");
+							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationBegin");
 						else if (i == dCnt - 1)
-							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationEnd");
+							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationEnd");
 						else
-							$("#reservationCalendar1").find("td[data-month='" + (dDt.getMonth()) + "'][data-year='" + (dDt.getFullYear()) + "']").find("a[data-date='" + (dDt.getDay()) + "']").addClass("calendarReservationContinue");
+							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDay()) + "']").addClass("calendarReservationContinue");
 					}
 
                 }
