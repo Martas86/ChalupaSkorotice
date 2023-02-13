@@ -14,7 +14,7 @@ $( document ).ready(function() {
 });
 
 function calendarShowReservation()
-{
+{return;
 	jQuery.get('assets/data/obsazenost.html', function (data) {
 			//alert(data);
 			//process text file line by line
