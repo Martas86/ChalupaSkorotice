@@ -6,6 +6,11 @@
 
 $(document).ready(function () {
 
+    // Play initial animations on page load.
+    setTimeout(function () {
+        $('body').removeClass('is-preload');
+    }, 100);
+
     var $window = $(window),
         $body = $('body'),
         $wrapper = $('#page-wrapper'),
@@ -19,13 +24,6 @@ $(document).ready(function () {
         medium: ['737px', '980px'],
         small: ['481px', '736px'],
         xsmall: [null, '480px']
-    });
-
-    // Play initial animations on page load.
-    $window.on('load', function () {
-        window.setTimeout(function () {
-            $body.removeClass('is-preload');
-        }, 100);
     });
 
     // Mobile?
@@ -82,13 +80,31 @@ $(document).ready(function () {
     }
     // Gallery.
     $('a.image').on('click', function (e, o) {
-        //alert("aaa");
-        if ($("#galleryDialog").length == 0) {
-            $("body").append('<div class="modal-backdrop" style="display:block;"></div><div class="modal" style="display:block;"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="modal-carousel-inner"><img class="modal-img" src="" /></div></div></div></div></div>');
+        if ($("#modal-gallery").length == 0) {
+            $("body").append('<div class="modal-backdrop"></div><div id="modal-gallery" class="modal" style="display:block;"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="modal-carousel-inner"><img class="modal-img" src=""></img><a class="modal-prev">&#10094;</a><a class="modal-next">&#10095;</a><a class="modal-close">X</a></div></div></div></div></div>');
+            $("body").on("click", ".modal-next", function () { gallerySlide(1); });
+            $("body").on("click", ".modal-prev", function () { gallerySlide(-1); });
+            $("body").on("click", ".modal-close", function () { $('#modal-gallery').hide(); $('.modal-backdrop').hide(); });
+            
         }
-        $(".modal-img", $("body")).attr("src", $("img", this).attr("src").replace("thumbs", "fulls"));
+        $(".modal-img", $("body")).attr("src", $(this).attr("href"));
+        $('.modal-backdrop').show();
+        $('#modal-gallery').show();
         e.preventDefault();
         e.stopImmediatePropagation();
     });
+
+    function gallerySlide(x)
+    {
+        let actSrc = $(".modal-img", $("body")).attr("src");
+        let $actElm = $("a.image[href='" + actSrc + "']");
+        let $galElms = $actElm.closest("section.gallery").find("a.image");
+        let actIdx = $galElms.index($actElm);
+        let newIdx = actIdx + (x);
+        if (newIdx < 0) newIdx = $galElms.length - 1;
+        else if (newIdx >= $galElms.length) newIdx = 0;
+        let newElm = $galElms[newIdx];
+        $(".modal-img", $("body")).attr("src", $(newElm).attr("href"));
+    }
 
 });

@@ -1,11 +1,11 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 	$(".reservationCalendar").datepicker({
 		showOtherMonths:true
 		,selectOtherMonths:true
 		,numberOfMonths:(browser.mobile?1:3)
-		,minDate: 0
-		, onSelect: function (date, datepicker) { calendarShowReservation(); }
-		,onUpdateDatepicker: function (datepicker) { calendarShowReservation(); }
+		, minDate: 0
+		, onSelect: function (date, datepicker) { calendarShowReservation($(this).attr("id").substr($(this).attr("id").length-1)); }
+		, onUpdateDatepicker: function (datepicker) { calendarShowReservation($(this).attr("id").substr($(this).attr("id").length - 1)); }
 	}
 	,$.datepicker.regional["cs"]
 	);
@@ -13,9 +13,9 @@ $( document ).ready(function() {
 	
 });
 
-function calendarShowReservation()
-{return;
-	jQuery.get('assets/data/obsazenost.html', function (data) {
+function calendarShowReservation(appartNo)
+{//return;
+	jQuery.get('assets/data/obsazenost' + appartNo + '.html', function (data) {
 			//alert(data);
 			//process text file line by line
 			var lns = data.split("\n");
@@ -38,12 +38,13 @@ function calendarShowReservation()
 					{
 						var dDT = new Date(bDT);
 						dDT.setDate(dDT.getDate() + i);
+						let $dayElm = $("#reservationCalendar" + appartNo).find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDate()) + "']");
 						if (i == 0)
-							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDate()) + "']").addClass("calendarReservationBegin");
+							$dayElm.addClass($dayElm.hasClass("calendarReservationEnd") ? "calendarReservationChange" : "calendarReservationBegin").removeClass("calendarReservationEnd");
 						else if (i == (dCnt - 1))
-							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDate()) + "']").addClass("calendarReservationEnd");
+							$dayElm.addClass($dayElm.hasClass("calendarReservationBegin") ? "calendarReservationChange" : "calendarReservationEnd").removeClass("calendarReservationBegin");
 						else
-							$("#reservationCalendar1").find("td[data-month='" + (dDT.getMonth()) + "'][data-year='" + (dDT.getFullYear()) + "']").find("a[data-date='" + (dDT.getDate()) + "']").addClass("calendarReservationContinue");
+							$dayElm.addClass("calendarReservationContinue");
 					}
 
                 }

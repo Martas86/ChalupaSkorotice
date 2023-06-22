@@ -1,6 +1,16 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic");
 
+@font-face {
+    font-family: Copperplate;
+    src: url("../webfonts/Copperplate.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Copperplate-Light;
+    src: url("../webfonts/Copperplate-Light.otf") format("opentype");
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -342,8 +352,47 @@ pre {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    margin:auto;
+    margin: auto;
 }
+
+/* Next & previous buttons */
+.modal-prev, .modal-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    border: none;
+}
+
+/* Position the "next button" to the right */
+.modal-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.modal-close {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /*margin-top: 5px;*/
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    transition: 0.6s ease;
+    border-radius: 3px 0 0 3px;
+    user-select: none;
+    border: none;
+}
+
 /* Row */
 .row {
     display: flex;
@@ -3855,6 +3904,7 @@ body.is-menu-visible #menu {
         -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
         transition: transform 0.5s ease, opacity 0.5s ease;
         display: inline-block;
+        /*font-family: Copperplate;*/
         font-size: 1.75em;
         opacity: 1;
         padding: 0.35em 1em;
@@ -4068,20 +4118,20 @@ body.is-preload #banner:after {
     }
 }
 
-/* Galery */
+/* gallery */
 
-#galery .inner {
+#gallery .inner {
     width: 100%;
 }
 
-#galery .items {
+#gallery .items {
     display: -moz-flex;
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
 }
 
-#galery .item {
+#gallery .item {
     -moz-flex-grow: 0;
     -webkit-flex-grow: 0;
     -ms-flex-grow: 0;
@@ -4095,7 +4145,7 @@ body.is-preload #banner:after {
     /*box-shadow: 0 0 0 3px #000000;*/
 }
 
-    #galery .item.thumb {
+    #gallery .item.thumb {
         display: block;
         position: relative;
         background: rgba(255, 255, 255, 0.25);
@@ -4103,13 +4153,13 @@ body.is-preload #banner:after {
         width: 400px;
     }
 
-        #galery .item.thumb a.image {
+        #gallery .item.thumb a.image {
             display: inline;
             position: static;
             border-radius: 0px;
         }
 
-        #galery .item.thumb img {
+        #gallery .item.thumb img {
             display: block;
             z-index: 1;
             position: absolute;
@@ -4135,7 +4185,7 @@ body.is-preload #banner:after {
             transition-delay: 1.25s;
         }
 
-        #galery .item.thumb h2 {
+        #gallery .item.thumb h2 {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -4148,12 +4198,12 @@ body.is-preload #banner:after {
         }
 
 @media screen and (max-width: 736px) {
-    #galery {
+    #gallery {
         padding-left: 1.5px;
         padding-right: 1.5px;
     }
 
-        #galery .items {
+        #gallery .items {
             -moz-flex-wrap: wrap;
             -webkit-flex-wrap: wrap;
             -ms-flex-wrap: wrap;
@@ -4164,11 +4214,11 @@ body.is-preload #banner:after {
             justify-content: center;
         }
 
-        #galery .item {
+        #gallery .item {
             height: 10em;
         }
 
-        #galery .item {
+        #gallery .item {
             -moz-flex-grow: 1;
             -webkit-flex-grow: 1;
             -ms-flex-grow: 1;
@@ -4446,6 +4496,6 @@ body.is-mobile.landing #footer {
 }
 
 /* NAV - Expander */
-body.is-mobile #nav-expander {
+body.is-mobile #nav-expander, body.is-mobile .container2 {
     display: block !important;
 }
